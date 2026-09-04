@@ -4,28 +4,28 @@ on:
   push:
     branches:
       - lesson-3
+
 jobs:
   function_test:
-      runs-on: ubuntu-latest
-      defaults:
-        run:
-          working-directory: frontend
-    steps:
-      - uses: actions/checkout@v4
-      - run npm install
-      - name: run functional tests
-        run: npm test
-  deploy:
-    needs: [function_test]
-    runs-on: ubuntu-latest
-    function_test:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: frontend
     steps:
       - uses: actions/checkout@v4
-#      - run: npm install && npm run build (commented out to save learner time)
+      - run: npm install
+      - name: run functional tests
+        run: npm test
+
+  deploy:
+    needs: [function_test]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      # - run: npm install && npm run build (commented out to save learner time)
       - name: Generate deployment package
         run: zip -r deploy.zip build Dockerfile
       - name: '**PLACEHOLDER** Deploy to Elastic Beanstalk'
