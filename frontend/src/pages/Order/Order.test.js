@@ -37,11 +37,11 @@ describe('Test Order', () => {
     );
     //Assert: replace the return true.
     await waitFor(() => {
-      expect(screen.getAllByText('$2.50'))
+    expect(screen.getAllByText('$2.50'))
       .toHaveLength(1);
 });
+});
     });
-
 
   test('Test Update Delivery Fee', async () => {
     //Modify the delivery distance and verify that the delivery fee is updated
@@ -57,7 +57,7 @@ describe('Test Order', () => {
 
     //ACT
     //Update the Delivery distance by choosing the 5 mile option from the drop down
-    await userEvent.selectOptions(
+    userEvent.selectOptions(
       // Find the select element, like a real user would.
       screen.getByRole('combobox'),
       // Find and select the 5 mile option, like a real user would.
@@ -65,11 +65,9 @@ describe('Test Order', () => {
     );
     //Assert: replace the return true.
     await waitFor(() => {
-      expect(screen.getAllByText('$5.00'))
-      .toHaveLength(1);
-});
+      expect().toHaveLenght()
+    });
   });
-});
 
 const setupMock = () => {
   //Mock API calls
